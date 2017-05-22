@@ -106,7 +106,7 @@ public abstract class DatabaseClass {
 
 	public static TreeSet<Post> readPosts(String selCourseid) {
 
-		TreeSet<Post> posts = new TreeSet<Post>(new PostCompatator());
+		TreeSet<Post> posts = new TreeSet<Post>(new PostComparator());
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH);
 		String text;
 		Date date;
@@ -134,9 +134,6 @@ public abstract class DatabaseClass {
 				date = format.parse((String) input.readObject());
 				username = (String) input.readObject();
 				courseid = (String) input.readObject();
-				
-				
-				
 				posts.add(new Post(text, date, username, courseid));
 			}
 
@@ -298,4 +295,54 @@ public abstract class DatabaseClass {
 		return courses;
 	}
 
+	@SuppressWarnings("unchecked")
+	public static ArrayList<UploadedFile> readFiles() {
+
+		ArrayList<UploadedFile> files = new ArrayList<UploadedFile>();
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH);
+		String filename;
+		Date date;
+		String username;
+		String courseid;
+		String query;
+
+		try {
+			connection = new Socket(IP, PORT);
+			System.out.println("Connected to server in port " + PORT);
+			output = new ObjectOutputStream(connection.getOutputStream());
+			output.flush();
+			input = new ObjectInputStream(connection.getInputStream());
+			output.writeInt(7);
+			output.flush();
+			System.out.println("You set the flag");
+			query = "SELECT * FROM files";
+			output.writeObject(query);
+			output.flush();
+			System.out.println("querie sent");
+			while (true) {
+				filename = (String) input.readObject();
+				if (filename.equals("stop"))
+					break;
+				username = (String) input.readObject();
+				date = format.parse((String) input.readObject());
+				courseid = (String) input.readObject();
+				files.add(new UploadedFile(filename, username, date, courseid));
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+
+			try {
+				input.close();
+				output.close();
+				connection.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+		}
+		Collections.sort(files);
+		return files;
+	}
 }

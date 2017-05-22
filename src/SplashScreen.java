@@ -56,7 +56,7 @@ public abstract class SplashScreen {
 	    
 		try {
 			connection = new Socket();
-			connection.connect(new InetSocketAddress(IP, PORT), 5000);
+			connection.connect(new InetSocketAddress(IP, PORT), 10000);
 			System.out.println("Connected to server in port " + PORT);
 			output = new ObjectOutputStream(connection.getOutputStream());
 			output.flush();

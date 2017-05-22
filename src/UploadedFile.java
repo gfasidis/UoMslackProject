@@ -1,9 +1,8 @@
 import java.text.SimpleDateFormat;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.TreeSet;
+import java.util.*;
 
-public class UploadedFile {
+@SuppressWarnings("rawtypes")
+public class UploadedFile implements Comparable{
 	
 	private String fileName;
 	private String user;
@@ -35,9 +34,9 @@ public class UploadedFile {
 		return courseId;
 	}
 	
-	public static TreeSet<UploadedFile> readFilesInfoFromDatabase(){
+	public static ArrayList<UploadedFile> readFilesInfoFromDatabase(){
 		
-		TreeSet<UploadedFile> files = ;
+		ArrayList<UploadedFile> files = DatabaseClass.readFiles();
 		return files;
 		
 	}
@@ -50,18 +49,12 @@ public class UploadedFile {
 		DatabaseClass.writeToDatabase("INSERT INTO files (filename, username, date, courseid) " + "VALUES('" + file.getFileName() + "', '" + file.getUser() + "', '" + currentTime + "', '" + file.getCourseId() + "')");
 		
 	}
-	
-class FileCompatator implements Comparator<UploadedFile> {
 
 	@Override
-	public int compare(UploadedFile o1, UploadedFile o2) {
+	public int compareTo(Object o) {
 		
-		return o1.getUploadDate().compareTo(o2.getUploadDate());
-	}
-	
-	
-}
-	
-	
+		UploadedFile file = (UploadedFile) o;
+		return this.getUploadDate().compareTo(file.getUploadDate());
+	}	
 
 }

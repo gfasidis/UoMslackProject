@@ -47,7 +47,7 @@ public class Post {
 }
 
 
-class PostCompatator implements Comparator<Post> {
+class PostComparator implements Comparator<Post> {
 
 	@Override
 	public int compare(Post o1, Post o2) {

@@ -12,6 +12,7 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -34,10 +35,13 @@ public class FileInfo extends JFrame {
 	private JButton downloadButton;
 	private JLabel labelUser;
 	private JLabel labelDate;
+	
+	private UploadedFile file;
 
 	
-	public FileInfo(UploadedFile file){
+	public FileInfo(UploadedFile selectedFile){
 		
+		file = selectedFile;
 		panel = new JPanel();
 		downloadButton = new JButton("Download");
 		labelFileName = new JLabel("Filemane: " + file.getFileName());
@@ -81,11 +85,11 @@ public class FileInfo extends JFrame {
 							.addComponent(downloadButton))
 						.addGroup(gl_panel.createSequentialGroup()
 							.addGap(14)
-							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-								.addComponent(labelUser, GroupLayout.PREFERRED_SIZE, 137, GroupLayout.PREFERRED_SIZE)
-								.addComponent(labelFileName)
-								.addComponent(labelDate, GroupLayout.PREFERRED_SIZE, 137, GroupLayout.PREFERRED_SIZE))))
-					.addContainerGap(96, Short.MAX_VALUE))
+							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
+								.addComponent(labelUser, GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
+								.addComponent(labelDate, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(labelFileName, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+					.addContainerGap(22, Short.MAX_VALUE))
 		);
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
@@ -123,10 +127,25 @@ public class FileInfo extends JFrame {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
+
+		    JFileChooser dirChooser;
+		    //int returnVal;
+		    File downloadDir;
+		    
+		    dirChooser = new JFileChooser(); 
+		    //returnVal = dirChooser.showDialog(FileInfo.this, "Save");
+		    dirChooser.setCurrentDirectory(new java.io.File("."));
+		    dirChooser.setDialogTitle("Choose directory to download the file");
+		    dirChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+		    dirChooser.setAcceptAllFileFilterUsed(false);
+		 
+		    if (dirChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) { 
+		      downloadDir = dirChooser.getSelectedFile();
+		      String filePath = downloadDir.getAbsolutePath() + "/" + file.getFileName();
+		      FileClient.downloadFile(file.getFileName(), filePath);
+		    }
+		    
+		 }
 			
-		}
-		
-		
 	}
 }

@@ -5,6 +5,5 @@ public class Main {
 		
 		//UoMslack boot screen
 		SplashScreen.startUOMslack();
-		
 	}
 }
