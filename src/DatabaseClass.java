@@ -353,7 +353,7 @@ public abstract class DatabaseClass {
 		dbPorts = new ArrayList<>();
 		int dPort = 10000;
 		for(int i = 0; i < 10; i++)
-			dbPorts.add(dPort + 0);
+			dbPorts.add(dPort + i);
 		
 	}
 	

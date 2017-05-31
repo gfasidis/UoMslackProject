@@ -88,7 +88,7 @@ public abstract class FileClient {
 		fcPorts = new ArrayList<>();
 		int fPort = 20000;
 		for(int i = 0; i < 10; i++)
-			fcPorts.add(fPort + 0);
+			fcPorts.add(fPort + i);
 		
 	}
 	
