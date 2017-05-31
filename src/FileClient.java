@@ -1,110 +1,106 @@
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 
 public abstract class FileClient {
 
-	private final static int PORT = 20000;
+	private static int PORT;
 	private final static String IP = "uomslack.ddns.net";
 
-	private final static int FILE_SIZE = 10485760;
-	
 	private static Socket connection = null;
-	private static FileInputStream fileInput = null;
-	private static FileOutputStream fileOutput = null;
-	private static BufferedInputStream bufferedInput = null;
-	private static BufferedOutputStream bufferedOutput = null;
-	private static OutputStream output = null;
-	private static ObjectOutputStream objOutput = null;
+	private static File file;
+	
+	private static ArrayList<Integer> fcPorts;
 	
 	public static void downloadFile(String fileName, String downloadPath) {
-
-		int bytesRead;
-		int current = 0;
-		try {
+		
+		try{
+			
 			connection = new Socket(IP, PORT);
-			System.out.println("Connecting...");
-			objOutput = new ObjectOutputStream(connection.getOutputStream());
-			objOutput.writeInt(0);
-			objOutput.flush();
+			DataInputStream dataInput = new DataInputStream(connection.getInputStream());
+			DataOutputStream dataOutput = new DataOutputStream(connection.getOutputStream());
+			dataOutput.writeInt(1);
+			dataOutput.flush();
+			FileOutputStream fileOutput = new FileOutputStream(downloadPath);
 
-			// receive file
-			objOutput.writeObject(fileName);
-			objOutput.flush();
-			byte[] mybytearray = new byte[FILE_SIZE];
-			InputStream is = connection.getInputStream();
-			fileOutput = new FileOutputStream(downloadPath);
-			bufferedOutput = new BufferedOutputStream(fileOutput);
-			bytesRead = is.read(mybytearray, 0, mybytearray.length);
-			current = bytesRead;
+			dataOutput.writeUTF(fileName);
+			byte[] buffer = new byte[4096];
 
-			do {
-				bytesRead = is.read(mybytearray, current, (mybytearray.length - current));
-				if (bytesRead >= 0)
-					current += bytesRead;
-			} while (bytesRead > -1);
+			int filesize = dataInput.readInt();
+			int read = 0;
+			int totalRead = 0;
+			int remaining = filesize;
 
-			bufferedOutput.write(mybytearray, 0, current);
-			bufferedOutput.flush();
-			System.out.println("File " + downloadPath + " downloaded (" + current + " bytes read)");
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (fileOutput != null)
-					fileOutput.close();
-				if (bufferedOutput != null)
-					bufferedOutput.close();
-				if (connection != null)
-					connection.close();
-			} catch (IOException e) {
+			while ((read = dataInput.read(buffer, 0, Math.min(buffer.length, remaining))) > 0) {
+				totalRead += read;
+				remaining -= read;
+				fileOutput.write(buffer, 0, read);
+			}
+
+			System.out.println("File " + fileName + " (" + totalRead + " bytes) downloaded");
+
+			fileOutput.close();
+			dataInput.close();
+			}catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
 	}
 
 	public static void uploadFile(File selectedFile) {
-		try {
+		
+		try{
 			connection = new Socket(IP, PORT);
-			System.out.println("Connecting...");
-			objOutput = new ObjectOutputStream(connection.getOutputStream());
-			objOutput.writeInt(1);
-			objOutput.flush();
+			
+			file = new File(selectedFile.getAbsolutePath());
+			int fileSize = (int) file.length();
+			String fileName = file.getName();
+			
+			DataOutputStream dataOutput = new DataOutputStream(connection.getOutputStream());
+			dataOutput.writeInt(0);
+			dataOutput.flush();
+			FileInputStream fileInput = new FileInputStream(file);
 
-			// send file
-			File myFile = new File(selectedFile.getPath());
-			byte[] mybytearray = new byte[(int) myFile.length()];
-			objOutput.writeObject(selectedFile.getName());
-			fileInput = new FileInputStream(myFile);
-			bufferedInput = new BufferedInputStream(fileInput);
-			bufferedInput.read(mybytearray, 0, mybytearray.length);
-			output = connection.getOutputStream();
-			System.out.println("Sending " + selectedFile.getAbsolutePath() + "(" + mybytearray.length + " bytes)");
-			output.write(mybytearray, 0, mybytearray.length);
-			output.flush();
-			System.out.println("Done.");
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (fileInput != null)
-					fileInput.close();
-				if (bufferedInput != null)
-					bufferedInput.close();
-				if (connection != null)
-					connection.close();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
+			dataOutput.writeUTF(fileName);
+			dataOutput.flush();
+			dataOutput.writeInt(fileSize);
+			dataOutput.flush();
+
+			byte[] buffer = new byte[4096];
+
+			while (fileInput.read(buffer) > 0)
+				dataOutput.write(buffer);
+
+			System.out.println("File " + fileName + " uploaded");
+
+			fileInput.close();
+			dataOutput.close();
+			} catch (Exception e){
 				e.printStackTrace();
 			}
-		}
+	}
+	
+	private static void generatePorts(){
+		
+		fcPorts = new ArrayList<>();
+		int fPort = 20000;
+		for(int i = 0; i < 10; i++)
+			fcPorts.add(fPort + 0);
+		
+	}
+	
+	public static ArrayList<Integer> getPorts(){
+		
+		generatePorts();
+		return fcPorts;
+		
+	}
 
+	public static void setPORT(int pORT) {
+		
+		PORT = pORT;
 	}
 }

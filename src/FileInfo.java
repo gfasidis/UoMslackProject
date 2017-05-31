@@ -129,11 +129,9 @@ public class FileInfo extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 
 		    JFileChooser dirChooser;
-		    //int returnVal;
 		    File downloadDir;
 		    
 		    dirChooser = new JFileChooser(); 
-		    //returnVal = dirChooser.showDialog(FileInfo.this, "Save");
 		    dirChooser.setCurrentDirectory(new java.io.File("."));
 		    dirChooser.setDialogTitle("Choose directory to download the file");
 		    dirChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);

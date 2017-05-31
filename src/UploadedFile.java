@@ -54,7 +54,7 @@ public class UploadedFile implements Comparable{
 	public int compareTo(Object o) {
 		
 		UploadedFile file = (UploadedFile) o;
-		return this.getUploadDate().compareTo(file.getUploadDate());
+		return -(this.getUploadDate().compareTo(file.getUploadDate()));
 	}	
 
 }

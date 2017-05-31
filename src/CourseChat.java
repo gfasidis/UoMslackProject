@@ -32,8 +32,6 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.Timer;
 import javax.swing.text.DefaultCaret;
-import java.awt.Color;
-import java.awt.Font;
 
 public class CourseChat extends JFrame{
 	
@@ -48,7 +46,6 @@ public class CourseChat extends JFrame{
 	private JTextArea postField;
 	private JTextArea friendsPosts;
 	
-
 	private JButton postButton;
 	private JButton backButton;
 	private JButton sendFilesButton;
@@ -56,7 +53,6 @@ public class CourseChat extends JFrame{
 	
 	private JLabel usersLabel;
 	private JLabel filesLabel;
-	private JLabel fileSizeLabel;
 	
 	private JPanel panel;
 	private JScrollPane scrollPanelPost;
@@ -133,9 +129,6 @@ public class CourseChat extends JFrame{
 		scrollPaneFiles.setPreferredSize(new Dimension(140, 130));
 		uplFiles = new DefaultListModel<String>();
 		updateFiles();
-		fileSizeLabel = new JLabel("File size: ... < 10MB");
-		fileSizeLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
-		fileSizeLabel.setForeground(Color.DARK_GRAY);
 
 		
 		//Post Field
@@ -166,44 +159,50 @@ public class CourseChat extends JFrame{
 			gl_panel.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_panel.createSequentialGroup()
 					.addGap(30)
+					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING, false)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addComponent(usernameField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addGap(18)
+							.addComponent(usermailField, GroupLayout.PREFERRED_SIZE, 153, GroupLayout.PREFERRED_SIZE)
+							.addGap(144))
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_panel.createSequentialGroup()
+									.addComponent(scrollPanelPost, GroupLayout.PREFERRED_SIZE, 336, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.UNRELATED)
+									.addComponent(postButton))
+								.addComponent(scrollPanelFriendsPosts, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED)))
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel.createSequentialGroup()
-							.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING, false)
-								.addGroup(gl_panel.createSequentialGroup()
-									.addComponent(usernameField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-									.addGap(18)
-									.addComponent(usermailField, GroupLayout.PREFERRED_SIZE, 153, GroupLayout.PREFERRED_SIZE)
-									.addGap(5)
-									.addComponent(backButton))
-								.addComponent(scrollPanelFriendsPosts, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_panel.createSequentialGroup()
 									.addGap(41)
 									.addComponent(usersLabel))
 								.addGroup(gl_panel.createSequentialGroup()
 									.addGap(18)
-									.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-										.addComponent(scrollPaneUsers, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
-										.addComponent(subscribeButton))))
-							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+									.addComponent(scrollPaneUsers, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE))
+								.addGroup(gl_panel.createSequentialGroup()
+									.addGap(28)
+									.addComponent(subscribeButton)))
+							.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
 								.addGroup(gl_panel.createSequentialGroup()
 									.addGap(35)
 									.addComponent(scrollPaneFiles, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE))
-								.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
-									.addGap(62)
-									.addComponent(filesLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-									.addPreferredGap(ComponentPlacement.RELATED))))
-						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(scrollPanelPost, GroupLayout.PREFERRED_SIZE, 336, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(postButton)
-							.addGap(18)
-							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-								.addComponent(sendFilesButton)
 								.addGroup(gl_panel.createSequentialGroup()
-									.addGap(6)
-									.addComponent(fileSizeLabel)))))
-					.addContainerGap(24, Short.MAX_VALUE))
+									.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
+										.addGroup(gl_panel.createSequentialGroup()
+											.addPreferredGap(ComponentPlacement.RELATED)
+											.addComponent(backButton))
+										.addGroup(gl_panel.createSequentialGroup()
+											.addGap(62)
+											.addComponent(filesLabel, GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)))
+									.addPreferredGap(ComponentPlacement.RELATED)))
+							.addContainerGap(17, Short.MAX_VALUE))
+						.addGroup(gl_panel.createSequentialGroup()
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(sendFilesButton)
+							.addGap(239))))
 		);
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
@@ -225,23 +224,21 @@ public class CourseChat extends JFrame{
 									.addGap(1)
 									.addComponent(usernameField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 								.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-									.addComponent(backButton)
 									.addComponent(usermailField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addComponent(backButton)
 									.addComponent(subscribeButton)))
 							.addGap(21)
 							.addComponent(scrollPanelFriendsPosts, GroupLayout.PREFERRED_SIZE, 255, GroupLayout.PREFERRED_SIZE)))
 					.addPreferredGap(ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
 					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
 						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(scrollPanelPost, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE)
-							.addGap(58))
-						.addGroup(gl_panel.createSequentialGroup()
 							.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 								.addComponent(postButton)
 								.addComponent(sendFilesButton))
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(fileSizeLabel)
-							.addGap(50))))
+							.addGap(50))
+						.addGroup(gl_panel.createSequentialGroup()
+							.addComponent(scrollPanelPost, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE)
+							.addGap(36))))
 		);
 		panel.setLayout(gl_panel);
 		
@@ -395,35 +392,27 @@ public class CourseChat extends JFrame{
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
 				File file = fileChooser.getSelectedFile();
 				
-				if(file.length() < 10485760){
-					
-					FileClient.uploadFile(file);
-					Date timestamp = new Date();
-					UploadedFile.uploadFileToDatabase(new UploadedFile(file.getName(), selectedUser.getName(), timestamp, selectedCourse.getId()));
-					String postText = "Just added a new file in this course!\n"
-							+ "File: " + file.getName();
-					Post newpost = new Post(postText, timestamp, selectedUser.getName(),selectedCourse.getId());
-					postField.setText("");
-					Post.writePostToDatabse(newpost);
-					updateFiles();
-					
-					//Add new post
-					updatePosts();
-					JScrollBar vertical = scrollPanelFriendsPosts.getVerticalScrollBar();
-					vertical.setValue(vertical.getMaximum());
-					
-					ArrayList<String> to= new ArrayList<String>();
-					for(User user : users)
-						if(user.isSubscribedToCourse(selectedCourse) && !(user.getName().equals(selectedUser.getName())) && !(user.getCourseNow().equals(selectedCourse.getId())))
-							to.add(user.getMail());
-					if(to.size()>0)
-						MailClass.subscribeMail(to, selectedCourse.getTitle(), newpost);
-				}
-				else
-				{
-					JOptionPane.showMessageDialog(null, "Something goes wrong...File must be < 10MB", "Warning", JOptionPane.WARNING_MESSAGE);
-				}
+				FileClient.uploadFile(file);
+				Date timestamp = new Date();
+				UploadedFile.uploadFileToDatabase(new UploadedFile(file.getName(), selectedUser.getName(), timestamp, selectedCourse.getId()));
+				String postText = "Just added a new file in this course!\n"
+						+ "File: " + file.getName();
+				Post newpost = new Post(postText, timestamp, selectedUser.getName(),selectedCourse.getId());
+				postField.setText("");
+				Post.writePostToDatabse(newpost);
+				updateFiles();
 				
+				//Add new post
+				updatePosts();
+				JScrollBar vertical = scrollPanelFriendsPosts.getVerticalScrollBar();
+				vertical.setValue(vertical.getMaximum());
+				
+				ArrayList<String> to= new ArrayList<String>();
+				for(User user : users)
+					if(user.isSubscribedToCourse(selectedCourse) && !(user.getName().equals(selectedUser.getName())) && !(user.getCourseNow().equals(selectedCourse.getId())))
+						to.add(user.getMail());
+				if(to.size()>0)
+					MailClass.subscribeMail(to, selectedCourse.getTitle(), newpost);
 				
 			}  
 		}

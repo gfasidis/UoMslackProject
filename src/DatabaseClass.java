@@ -11,12 +11,14 @@ import java.util.TreeSet;
 
 public abstract class DatabaseClass {
 
-	private final static int PORT = 10000;
+	private static int PORT;
 	private final static String IP = "uomslack.ddns.net";
 
 	private static Socket connection;
 	private static ObjectOutputStream output;
 	private static ObjectInputStream input;
+	
+	private static ArrayList<Integer> dbPorts;
 
 	public static void writeToDatabase(String query) {
 
@@ -345,4 +347,27 @@ public abstract class DatabaseClass {
 		Collections.sort(files);
 		return files;
 	}
+	
+	private static void generatePorts(){
+		
+		dbPorts = new ArrayList<>();
+		int dPort = 10000;
+		for(int i = 0; i < 10; i++)
+			dbPorts.add(dPort + 0);
+		
+	}
+	
+	public static ArrayList<Integer> getPorts(){
+		
+		generatePorts();
+		return dbPorts;
+		
+	}
+
+	public static void setPORT(int pORT) {
+		
+		PORT = pORT;
+	}
+	
+	
 }
