@@ -1,0 +1,17 @@
+DefaultListModel<String> yearModel = new DefaultListModel<String>();
+yearModel.addElement("1ο Έτος");
+yearModel.addElement("2ο Έτος");
+yearModel.addElement("3ο Έτος");
+yearModel.addElement("4ο Έτος");
+yearList.setModel(yearModel);
+
+DefaultListModel<String> departmentsModel = new DefaultListModel<String>();
+departmentsModel.addElement("Βαλκανικών, Σλαβικών και Ανατολικών Σπουδών");
+departmentsModel.addElement("Διεθνών και Ευρωπαϊκών Σπουδών");
+departmentsModel.addElement("Εκπαιδευτικής και Κοινωνικής Πολιτικής");
+departmentsModel.addElement("Εφαρμοσμένης Πληροφορικής");
+departmentsModel.addElement("Λογιστικής και Χρηματοοικονομικής");
+departmentsModel.addElement("Μουσικής Επιστήμης και Τέχνης");
+departmentsModel.addElement("Οικονομικών Επιστημών");
+departmentsModel.addElement("Οργάνωσης και Διοίκησης Επιχειρήσεων");
+uomList.setModel(departmentsModel);
