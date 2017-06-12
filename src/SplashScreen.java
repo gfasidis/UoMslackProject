@@ -35,7 +35,7 @@ public abstract class SplashScreen {
 				splash.splashOff();
 			}
 			else{
-				JOptionPane.showMessageDialog(null, "Something goes wrong. Check your intenert connection!", "Warning", JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Something went wrong. Check your intenert connection!", "Warning", JOptionPane.WARNING_MESSAGE);
 				splash.splashOff();
 			}
 		} catch (InterruptedException e) {
