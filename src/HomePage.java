@@ -244,27 +244,27 @@ public class HomePage extends JFrame {
 
 		@Override
 		public void keyPressed(KeyEvent e) {
-			
-			//New Connection
-			Connections.newConnection();
-			users = User.readUsersFromDatabase();
-
-			String name = usernameField.getText();
-			String email = emailField.getText();
-			char[] password = passwordField.getPassword();
-			SecureRandom vertifCode;
-			String code;
-
-			boolean find = false;
-
-			for (User user : users) {
-				if (user.getName().equalsIgnoreCase(name) || user.getMail().equals(email)) {
-					find = true;
-					break;
-				}
-			}
-
+		
 			if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+				
+				//New Connection
+				Connections.newConnection();
+				users = User.readUsersFromDatabase();
+
+				String name = usernameField.getText();
+				String email = emailField.getText();
+				char[] password = passwordField.getPassword();
+				SecureRandom vertifCode;
+				String code;
+
+				boolean find = false;
+
+				for (User user : users) {
+					if (user.getName().equalsIgnoreCase(name) || user.getMail().equals(email)) {
+						find = true;
+						break;
+					}
+				}
 				if (!find && email.endsWith("@uom.edu.gr") && (password.length >= 8)) {
 					vertifCode = User.getVertificationCode();
 					code = String.valueOf(vertifCode).substring(27);

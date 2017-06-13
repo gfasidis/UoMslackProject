@@ -151,9 +151,7 @@ public class ChangePassWordPage extends JFrame {
 		@Override
 		public void keyPressed(KeyEvent e) {
 
-
 			if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-				
 				
 				char[] password = passwordField.getPassword();
 				if(password.length < 8)

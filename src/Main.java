@@ -16,6 +16,12 @@ public class Main {
 		 */
 		
 		/*
+		 * Se periptwsh pou emfanizei kapoio provlima me to gmail kata
+		 * thn apostolh tou kwdikou energopoihshs mporeite na mou steilete mail
+		 * na epitrepso thn sundesh dioti to google orismenes fores den afhei na sundethei gia logous asfaleias
+		 */
+		
+		/*
 		 * Gia na trexei to programma xreiazontai oi servers pou uparxoun sto zip arxeio poy didetai
 		 */
 	}
