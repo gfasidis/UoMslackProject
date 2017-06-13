@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Random;
 
 public abstract class FileClient {
 
@@ -103,4 +104,17 @@ public abstract class FileClient {
 		
 		PORT = pORT;
 	}
+	
+	public static int randomPorts(ArrayList<Integer> ports) {
+		
+	    Random rand = new Random(System.currentTimeMillis()); 
+	    Integer randomPort = ports.get(rand.nextInt(ports.size()));
+	    return randomPort;
+	}
+
+	public static String getIp() {
+		return IP;
+	}
+	
+	
 }

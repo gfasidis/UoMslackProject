@@ -82,7 +82,9 @@ public class CourseChat extends JFrame{
 	
 	public CourseChat(User aUser, Course selectedCourse) {
 		
-		
+		//New Connection
+		Connections.newConnection();
+	
 		this.selectedCourse = selectedCourse;
 		selectedUser = aUser;
 		
@@ -273,6 +275,7 @@ public class CourseChat extends JFrame{
 		Timer timer = new Timer(INTERVAL, new ActionListener() {
 					public void actionPerformed(ActionEvent evt) {
 						
+						Connections.newConnection();
 						updatePosts();
 						updateOnlineUsers();
 						updateFiles();
@@ -298,6 +301,7 @@ public class CourseChat extends JFrame{
 		});
 		
 	}
+	
 		public void logOut(){
 		
 		 selectedUser.setCourseNow("");
@@ -328,7 +332,7 @@ public class CourseChat extends JFrame{
 		for(Post aPost : posts){
 			String text = aPost.getPostUser() + " at " + aPost.getPostDate() + ":\n" + aPost.getPostText() + "\n";
 			friendsPosts.append(text);
-			friendsPosts.append("--------------------------------------------------\n");
+			friendsPosts.append("---------------------------------------------------------------------\n");
 		}
 		
 	}

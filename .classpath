@@ -2,9 +2,9 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
-	<classpathentry kind="lib" path="/Users/iFasMan7/Desktop/uomslack/Extrernal jars/mail.jar"/>
-	<classpathentry kind="lib" path="/Users/iFasMan7/Desktop/uomslack/Extrernal jars/activation.jar"/>
-	<classpathentry kind="lib" path="/Users/iFasMan7/Desktop/uomslack/Extrernal jars/commons-io-2.5.jar"/>
-	<classpathentry kind="lib" path="/Users/iFasMan7/Desktop/uomslack/Extrernal jars/JSplashScreen.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/Desktop/UoMslackProject-master (1)/UoMslackProject-master/Extrernal jars/mail.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/Desktop/UoMslackProject-master (1)/UoMslackProject-master/Extrernal jars/activation.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/Desktop/UoMslackProject-master (1)/UoMslackProject-master/Extrernal jars/commons-io-2.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/Desktop/UoMslackProject-master (1)/UoMslackProject-master/Extrernal jars/JSplashScreen.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

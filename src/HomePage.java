@@ -184,6 +184,8 @@ public class HomePage extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			
+			//New Connection
+			Connections.newConnection();
 			users = User.readUsersFromDatabase();
 
 			String name = usernameField.getText();
@@ -243,6 +245,8 @@ public class HomePage extends JFrame {
 		@Override
 		public void keyPressed(KeyEvent e) {
 			
+			//New Connection
+			Connections.newConnection();
 			users = User.readUsersFromDatabase();
 
 			String name = usernameField.getText();

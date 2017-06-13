@@ -114,6 +114,8 @@ public class ChangePassWordPage extends JFrame {
 			else if (Arrays.equals(password, selectedUser.getPassword()))
 				JOptionPane.showMessageDialog(null, "Password is the same with your old password", "Warning", JOptionPane.WARNING_MESSAGE);
 			else{
+				//New Connection
+				Connections.newConnection();
 				selectedUser.setPassword(password);
 				String query = "UPDATE users SET password = '" + String.valueOf(password) + "' WHERE username = '" + selectedUser.getName() + "'";
 				DatabaseClass.writeToDatabase(query);
@@ -152,12 +154,15 @@ public class ChangePassWordPage extends JFrame {
 
 			if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 				
+				
 				char[] password = passwordField.getPassword();
 				if(password.length < 8)
 					JOptionPane.showMessageDialog(null, "Password must contain at least 8 characters", "Warning", JOptionPane.WARNING_MESSAGE);
 				else if (Arrays.equals(password, selectedUser.getPassword()))
 					JOptionPane.showMessageDialog(null, "Password is the same with your old password", "Warning", JOptionPane.WARNING_MESSAGE);
 				else{
+					//New Connection
+					Connections.newConnection();
 					selectedUser.setPassword(password);
 					String query = "UPDATE users SET password = '" + String.valueOf(password) + "' WHERE username = '" + selectedUser.getName() + "'";
 					DatabaseClass.writeToDatabase(query);

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Random;
 import java.util.TreeSet;
 
 public abstract class DatabaseClass {
@@ -368,6 +369,19 @@ public abstract class DatabaseClass {
 		
 		PORT = pORT;
 	}
+	
+	public static int randomPorts(ArrayList<Integer> ports) {
+		
+	    Random rand = new Random(System.currentTimeMillis()); 
+	    Integer randomPort = ports.get(rand.nextInt(ports.size()));
+	    return randomPort;
+	}
+
+	public static String getIp() {
+		return IP;
+	}
+	
+	
 	
 	
 }

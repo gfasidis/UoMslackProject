@@ -42,6 +42,9 @@ public class AuthenticateUser extends JFrame {
 	
 	public AuthenticateUser() {
 		
+		//New Connection
+		Connections.newConnection();
+				
 		users = User.readUsersFromDatabase();
 		
 		panel = new JPanel();

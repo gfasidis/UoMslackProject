@@ -40,6 +40,8 @@ public class CoursesPage extends JFrame {
 
 	public CoursesPage(String department, String year, User aUser) {
 
+		//New Connection
+		Connections.newConnection();
 		selectedUser = aUser;
 
 		panel = new JPanel();

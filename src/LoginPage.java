@@ -46,6 +46,8 @@ public class LoginPage extends JFrame {
 
 	public LoginPage() {
 
+		//New Connection
+		Connections.newConnection();
 		users = User.readUsersFromDatabase();
 		
 		panel = new JPanel();
@@ -63,21 +65,21 @@ public class LoginPage extends JFrame {
 		welcomePageButton = new JButton("Back to \"Welcome Page\"");
 
 		DefaultListModel<String> yearModel = new DefaultListModel<String>();
-		yearModel.addElement("1ΞΏ ΞΟ„ΞΏΟ‚");
-		yearModel.addElement("2ΞΏ ΞΟ„ΞΏΟ‚");
-		yearModel.addElement("3ΞΏ ΞΟ„ΞΏΟ‚");
-		yearModel.addElement("4ΞΏ ΞΟ„ΞΏΟ‚");
+		yearModel.addElement("1ο Έτος");
+		yearModel.addElement("2ο Έτος");
+		yearModel.addElement("3ο Έτος");
+		yearModel.addElement("4ο Έτος");
 		yearList.setModel(yearModel);
 
 		DefaultListModel<String> departmentsModel = new DefaultListModel<String>();
-		departmentsModel.addElement("Ξ’Ξ±Ξ»ΞΊΞ±Ξ½ΞΉΞΊΟΞ½, Ξ£Ξ»Ξ±Ξ²ΞΉΞΊΟΞ½ ΞΊΞ±ΞΉ Ξ‘Ξ½Ξ±Ο„ΞΏΞ»ΞΉΞΊΟΞ½ Ξ£Ο€ΞΏΟ…Ξ΄ΟΞ½");
-		departmentsModel.addElement("Ξ”ΞΉΞµΞΈΞ½ΟΞ½ ΞΊΞ±ΞΉ Ξ•Ο…ΟΟ‰Ο€Ξ±ΟΞΊΟΞ½ Ξ£Ο€ΞΏΟ…Ξ΄ΟΞ½");
-		departmentsModel.addElement("Ξ•ΞΊΟ€Ξ±ΞΉΞ΄ΞµΟ…Ο„ΞΉΞΊΞ®Ο‚ ΞΊΞ±ΞΉ ΞΞΏΞΉΞ½Ο‰Ξ½ΞΉΞΊΞ®Ο‚ Ξ ΞΏΞ»ΞΉΟ„ΞΉΞΊΞ®Ο‚");
-		departmentsModel.addElement("Ξ•Ο†Ξ±ΟΞΌΞΏΟƒΞΌΞ­Ξ½Ξ·Ο‚ Ξ Ξ»Ξ·ΟΞΏΟ†ΞΏΟΞΉΞΊΞ®Ο‚");
-		departmentsModel.addElement("Ξ›ΞΏΞ³ΞΉΟƒΟ„ΞΉΞΊΞ®Ο‚ ΞΊΞ±ΞΉ Ξ§ΟΞ·ΞΌΞ±Ο„ΞΏΞΏΞΉΞΊΞΏΞ½ΞΏΞΌΞΉΞΊΞ®Ο‚");
-		departmentsModel.addElement("ΞΞΏΟ…ΟƒΞΉΞΊΞ®Ο‚ Ξ•Ο€ΞΉΟƒΟ„Ξ®ΞΌΞ·Ο‚ ΞΊΞ±ΞΉ Ξ¤Ξ­Ο‡Ξ½Ξ·Ο‚");
-		departmentsModel.addElement("ΞΞΉΞΊΞΏΞ½ΞΏΞΌΞΉΞΊΟΞ½ Ξ•Ο€ΞΉΟƒΟ„Ξ·ΞΌΟΞ½");
-		departmentsModel.addElement("ΞΟΞ³Ξ¬Ξ½Ο‰ΟƒΞ·Ο‚ ΞΊΞ±ΞΉ Ξ”ΞΉΞΏΞ―ΞΊΞ·ΟƒΞ·Ο‚ Ξ•Ο€ΞΉΟ‡ΞµΞΉΟΞ®ΟƒΞµΟ‰Ξ½");
+		departmentsModel.addElement("Βαλκανικών, Σλαβικών και Ανατολικών Σπουδών");
+		departmentsModel.addElement("Διεθνών και Ευρωπαϊκών Σπουδών");
+		departmentsModel.addElement("Εκπαιδευτικής και Κοινωνικής Πολιτικής");
+		departmentsModel.addElement("Εφαρμοσμένης Πληροφορικής");
+		departmentsModel.addElement("Λογιστικής και Χρηματοοικονομικής");
+		departmentsModel.addElement("Μουσικής Επιστήμης και Τέχνης");
+		departmentsModel.addElement("Οικονομικών Επιστημών");
+		departmentsModel.addElement("Οργάνωσης και Διοίκησης Επιχειρήσεων");
 		uomList.setModel(departmentsModel);
 		
 		int start = 0;
@@ -165,6 +167,8 @@ public class LoginPage extends JFrame {
 	public LoginPage(String username, String password) {
 
 
+		//New Connection
+		Connections.newConnection();
 		users = User.readUsersFromDatabase();
 		
 		panel = new JPanel();
@@ -184,21 +188,21 @@ public class LoginPage extends JFrame {
 		welcomePageButton = new JButton("Back to \"Welcome Page\"");
 		
 		DefaultListModel<String> yearModel = new DefaultListModel<String>();
-		yearModel.addElement("1ΞΏ ΞΟ„ΞΏΟ‚");
-		yearModel.addElement("2ΞΏ ΞΟ„ΞΏΟ‚");
-		yearModel.addElement("3ΞΏ ΞΟ„ΞΏΟ‚");
-		yearModel.addElement("4ΞΏ ΞΟ„ΞΏΟ‚");
+		yearModel.addElement("1ο Έτος");
+		yearModel.addElement("2ο Έτος");
+		yearModel.addElement("3ο Έτος");
+		yearModel.addElement("4ο Έτος");
 		yearList.setModel(yearModel);
 
 		DefaultListModel<String> departmentsModel = new DefaultListModel<String>();
-		departmentsModel.addElement("Ξ’Ξ±Ξ»ΞΊΞ±Ξ½ΞΉΞΊΟΞ½, Ξ£Ξ»Ξ±Ξ²ΞΉΞΊΟΞ½ ΞΊΞ±ΞΉ Ξ‘Ξ½Ξ±Ο„ΞΏΞ»ΞΉΞΊΟΞ½ Ξ£Ο€ΞΏΟ…Ξ΄ΟΞ½");
-		departmentsModel.addElement("Ξ”ΞΉΞµΞΈΞ½ΟΞ½ ΞΊΞ±ΞΉ Ξ•Ο…ΟΟ‰Ο€Ξ±ΟΞΊΟΞ½ Ξ£Ο€ΞΏΟ…Ξ΄ΟΞ½");
-		departmentsModel.addElement("Ξ•ΞΊΟ€Ξ±ΞΉΞ΄ΞµΟ…Ο„ΞΉΞΊΞ®Ο‚ ΞΊΞ±ΞΉ ΞΞΏΞΉΞ½Ο‰Ξ½ΞΉΞΊΞ®Ο‚ Ξ ΞΏΞ»ΞΉΟ„ΞΉΞΊΞ®Ο‚");
-		departmentsModel.addElement("Ξ•Ο†Ξ±ΟΞΌΞΏΟƒΞΌΞ­Ξ½Ξ·Ο‚ Ξ Ξ»Ξ·ΟΞΏΟ†ΞΏΟΞΉΞΊΞ®Ο‚");
-		departmentsModel.addElement("Ξ›ΞΏΞ³ΞΉΟƒΟ„ΞΉΞΊΞ®Ο‚ ΞΊΞ±ΞΉ Ξ§ΟΞ·ΞΌΞ±Ο„ΞΏΞΏΞΉΞΊΞΏΞ½ΞΏΞΌΞΉΞΊΞ®Ο‚");
-		departmentsModel.addElement("ΞΞΏΟ…ΟƒΞΉΞΊΞ®Ο‚ Ξ•Ο€ΞΉΟƒΟ„Ξ®ΞΌΞ·Ο‚ ΞΊΞ±ΞΉ Ξ¤Ξ­Ο‡Ξ½Ξ·Ο‚");
-		departmentsModel.addElement("ΞΞΉΞΊΞΏΞ½ΞΏΞΌΞΉΞΊΟΞ½ Ξ•Ο€ΞΉΟƒΟ„Ξ·ΞΌΟΞ½");
-		departmentsModel.addElement("ΞΟΞ³Ξ¬Ξ½Ο‰ΟƒΞ·Ο‚ ΞΊΞ±ΞΉ Ξ”ΞΉΞΏΞ―ΞΊΞ·ΟƒΞ·Ο‚ Ξ•Ο€ΞΉΟ‡ΞµΞΉΟΞ®ΟƒΞµΟ‰Ξ½");
+		departmentsModel.addElement("Βαλκανικών, Σλαβικών και Ανατολικών Σπουδών");
+		departmentsModel.addElement("Διεθνών και Ευρωπαϊκών Σπουδών");
+		departmentsModel.addElement("Εκπαιδευτικής και Κοινωνικής Πολιτικής");
+		departmentsModel.addElement("Εφαρμοσμένης Πληροφορικής");
+		departmentsModel.addElement("Λογιστικής και Χρηματοοικονομικής");
+		departmentsModel.addElement("Μουσικής Επιστήμης και Τέχνης");
+		departmentsModel.addElement("Οικονομικών Επιστημών");
+		departmentsModel.addElement("Οργάνωσης και Διοίκησης Επιχειρήσεων");
 		uomList.setModel(departmentsModel);
 		
 		int start = 0;

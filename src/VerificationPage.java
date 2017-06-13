@@ -169,6 +169,8 @@ public class VerificationPage extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 
+			//New Connection
+			Connections.newConnection();
 			String userCode = verifCode.getText();
 			if(correctCode.equals(userCode)){
 				JOptionPane.showMessageDialog(null, "User " + " \"" + username + "\"" + " added successfully");
@@ -259,17 +261,19 @@ public class VerificationPage extends JFrame {
 		@Override
 		public void keyPressed(KeyEvent e) {
 			if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-			String userCode = verifCode.getText();
-			if(correctCode.equals(userCode)){
-				JOptionPane.showMessageDialog(null, "User " + " \"" + username + "\"" + " added successfully");
-				User.writeUserToDatabase(new User(username, email, password, "NA"));
-				new LoginPage(username, String.valueOf(password));
-				dispose();
-			}
-			else
-				JOptionPane.showMessageDialog(null, "Verification code is wrong", "Warning", JOptionPane.WARNING_MESSAGE);
-			
-			}
+				//New Connection
+				Connections.newConnection();
+				String userCode = verifCode.getText();
+				if(correctCode.equals(userCode)){
+					JOptionPane.showMessageDialog(null, "User " + " \"" + username + "\"" + " added successfully");
+					User.writeUserToDatabase(new User(username, email, password, "NA"));
+					new LoginPage(username, String.valueOf(password));
+					dispose();
+				}
+				else
+					JOptionPane.showMessageDialog(null, "Verification code is wrong", "Warning", JOptionPane.WARNING_MESSAGE);
+				
+				}
 			
 		}
 
