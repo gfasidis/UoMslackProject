@@ -108,7 +108,7 @@ public class CourseChat extends JFrame{
 		friendsPosts = new JTextArea(10,25);
 		friendsPosts.setLineWrap(true);
 		friendsPosts.setEditable(false);
-		postButton = new JButton("Sent");
+		postButton = new JButton("Send");
 		scrollPanelFriendsPosts = new JScrollPane(friendsPosts);
 		scrollPanelFriendsPosts.setPreferredSize(new Dimension(422, 255));
 		updatePosts();
@@ -399,7 +399,7 @@ public class CourseChat extends JFrame{
 				FileClient.uploadFile(file);
 				Date timestamp = new Date();
 				UploadedFile.uploadFileToDatabase(new UploadedFile(file.getName(), selectedUser.getName(), timestamp, selectedCourse.getId()));
-				String postText = "Just added a new file in this course!\n"
+				String postText = "Added a new file in this course!\n"
 						+ "File: " + file.getName();
 				Post newpost = new Post(postText, timestamp, selectedUser.getName(),selectedCourse.getId());
 				postField.setText("");

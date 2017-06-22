@@ -84,7 +84,7 @@ public abstract class MailClass {
               mailAddress_TO[i] = new InternetAddress(to.get(i));
           }
           message.addRecipients(Message.RecipientType.BCC, mailAddress_TO);
-          message.setSubject("New post in " + courseTitle + " course!");    
+          message.setSubject("New post in " + courseTitle);    
           message.setContent("<b>" + aPost.getPostUser() + "</b>" + ": " + "<i>" + aPost.getPostText() + "</i>", "text/html");    
 
           Transport.send(message);

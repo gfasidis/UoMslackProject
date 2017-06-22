@@ -54,7 +54,7 @@ public class LoginPage extends JFrame {
 		
 		yearList = new JList<String>();
 		uomList = new JList<String>();
-		uomList.setPreferredSize(new Dimension(310, 133));
+		uomList.setPreferredSize(new Dimension(310, 150));
 		departmentsScrollPanel = new JScrollPane(uomList);
 		yearScrollPanel = new JScrollPane(yearList);
 
@@ -175,7 +175,7 @@ public class LoginPage extends JFrame {
 		
 		yearList = new JList<String>();
 		uomList = new JList<String>();
-		uomList.setPreferredSize(new Dimension(310, 133));
+		uomList.setPreferredSize(new Dimension(310, 150));
 		departmentsScrollPanel = new JScrollPane(uomList);
 		yearScrollPanel = new JScrollPane(yearList);
 

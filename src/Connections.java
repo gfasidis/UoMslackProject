@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public abstract class Connections {
 
-private static boolean checkDatabaseConnection(int PORT){
+	private static boolean checkDatabaseConnection(int PORT){
 		
 	    Socket connection;
 		ObjectOutputStream output;
@@ -84,8 +84,34 @@ private static boolean checkDatabaseConnection(int PORT){
 					break;
 				}
 			}
+		}
+	}
+	
+	public static boolean checkConnection(){
+		
+		ArrayList<Integer> dpPorts = DatabaseClass.getPorts();
+		ArrayList<Integer> fcPorts = FileClient.getPorts();
+		boolean dbFLag = false;
+		boolean fcFlag = false;
+		
+		while(true){
+			if(checkDatabaseConnection(DatabaseClass.randomPorts(dpPorts))){
+				dbFLag = true;
+				break;
+			}
 			
 		}
 		
+		if(dbFLag){
+			while(true){
+				if(checkServerConnection(FileClient.randomPorts(fcPorts))){
+					fcFlag = true;
+					break;
+				}
+				
+			}
+		}
+		return (dbFLag && fcFlag);
 	}
+	
 }
