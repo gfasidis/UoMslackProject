@@ -23,7 +23,7 @@ public abstract class MailClass {
 	public static void vertificationMail(String to, String vertificatioCode){
 		  
 		 final String from= "johntokis97@gmail.com";  
-		 final String password= "john123456789";
+		 final String password= " ";
 		  
 		  Properties props = new Properties();    
           props.put("mail.smtp.host", "smtp.gmail.com");    
